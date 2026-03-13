@@ -31,6 +31,8 @@ Beginner view:
 This browser is **not** your daily driver. It is a safe, isolated surface for
 agent automation and verification.
 
+Use this tool only after higher-priority interfaces are ruled out, for example API, n8n, MCP, repo edit, DB/storage, CLI, and provider APIs.
+
 ## Quick start
 
 ```bash
