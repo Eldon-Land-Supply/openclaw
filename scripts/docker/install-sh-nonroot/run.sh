@@ -38,9 +38,14 @@ if [[ -z "$CMD_PATH" ]]; then
 fi
 echo "==> Verify CLI installed: $CLI_NAME"
 INSTALLED_VERSION="$("$CMD_PATH" --version 2>/dev/null | head -n 1 | tr -d '\r')"
+INSTALLED_SEMVER="$(printf '%s\n' "$INSTALLED_VERSION" | sed -nE 's/.*\b([0-9]+\.[0-9]+\.[0-9]+)\b.*/\1/p' | head -n 1)"
 
-echo "cli=$CLI_NAME installed=$INSTALLED_VERSION expected=$LATEST_VERSION"
-if [[ "$INSTALLED_VERSION" != "$LATEST_VERSION" ]]; then
+if [[ -z "$INSTALLED_SEMVER" ]]; then
+  INSTALLED_SEMVER="$INSTALLED_VERSION"
+fi
+
+echo "cli=$CLI_NAME installed=$INSTALLED_VERSION parsed=$INSTALLED_SEMVER expected=$LATEST_VERSION"
+if [[ "$INSTALLED_SEMVER" != "$LATEST_VERSION" ]]; then
   echo "ERROR: expected ${CLI_NAME}@${LATEST_VERSION}, got ${CLI_NAME}@${INSTALLED_VERSION}" >&2
   exit 1
 fi
