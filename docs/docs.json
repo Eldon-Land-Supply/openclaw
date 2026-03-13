@@ -994,6 +994,7 @@
                 "group": "Automation",
                 "pages": [
                   "automation/hooks",
+                  "automation/task-routing",
                   "automation/cron-jobs",
                   "automation/cron-vs-heartbeat",
                   "automation/troubleshooting",
